@@ -6,6 +6,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'cards.dart';
+import 'constants.dart';
 import 'models/noteprovider.dart';
 import 'mythemes.dart';
 import 'noteEdit.dart';
@@ -91,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 backgroundColor: Colors.transparent,
                 actions: [
+                  ChangeThemeButton(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: GestureDetector(
@@ -152,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                                   title: item.title,
                                   content: item.content,
                                   imagePath: item.imagePath,
-                                  color: item.color,
+                                  color: hexToColor(item.color),
                                   isAchived: item.isAchived,
                                   date: item.date,
                                 );

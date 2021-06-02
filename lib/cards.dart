@@ -106,7 +106,7 @@ class _NoteCardState extends State<NoteCard> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: Expanded(
-                              child: Text(widget.content,
+                child: Text(widget.content,
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

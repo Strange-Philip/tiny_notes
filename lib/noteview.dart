@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:tiny_notes/models/noteprovider.dart';
 
+import 'constants.dart';
 import 'models/notes.dart';
 
 class NoteView extends StatefulWidget {
@@ -31,7 +32,7 @@ class _NoteViewState extends State<NoteView> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          backgroundColor: selectedNote.color,
+      backgroundColor: hexToColor(selectedNote.color),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -99,7 +100,9 @@ class _NoteViewState extends State<NoteView> {
                                 ),
                                 onPressed: () async {
                                   Navigator.pop(context);
-                                  await Provider.of<NoteProvider>(context,listen: false).deleteNote(selectedNote.id);
+                                  await Provider.of<NoteProvider>(context,
+                                          listen: false)
+                                      .deleteNote(selectedNote.id);
                                   Navigator.pop(context);
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(

@@ -157,6 +157,8 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
           if (titleController.text.isEmpty) {
             titleController.text = "Untitled Note";
             saveNote();
+          } else {
+            saveNote();
           }
         },
         backgroundColor: Color(0xffFBDB6C),
@@ -241,9 +243,14 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                   hintText: "Enter Something...", border: InputBorder.none),
             ),
           ),
-          if (_image == null)SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
-          )else SizedBox(height: 100,),
+          if (_image == null)
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+            )
+          else
+            SizedBox(
+              height: 100,
+            ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: Center(
@@ -293,16 +300,28 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     print('done');
     print(title);
     print(content);
-
+    print("checking : ${color.value.toRadixString(16)}");
     if (id != null) {
       Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
-          id, title, content, imagePath, color, isAchived, EditMode.UPDATE);
+          id,
+          title,
+          content,
+          imagePath,
+          color.value.toRadixString(16),
+          isAchived,
+          EditMode.UPDATE);
       Navigator.pop(this.context);
     } else {
       int id = DateTime.now().microsecondsSinceEpoch;
       print('done');
       Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
-          id, title, content, imagePath, color, isAchived, EditMode.ADD);
+          id,
+          title,
+          content,
+          imagePath,
+          color.value.toRadixString(16),
+          isAchived,
+          EditMode.ADD);
       print('doneNow');
       Navigator.of(this.context)
           .pushReplacementNamed('homepage', arguments: id);

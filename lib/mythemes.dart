@@ -6,8 +6,8 @@ class ThemeProvider extends ChangeNotifier {
 
   bool get isDarMode => themeMode == ThemeMode.dark;
 
-  void toggleTheme(bool isOn) {
-    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+  toggleTheme(bool isOn) {
+    isOn == true ? themeMode = ThemeMode.dark : themeMode = ThemeMode.light;
     notifyListeners();
   }
 }
@@ -20,7 +20,7 @@ class MyTheme {
       accentColor: Colors.grey.shade900,
       colorScheme: ColorScheme.dark(),
       primaryColor: Colors.black,
-      iconTheme: IconThemeData(color:Colors.white),
+      iconTheme: IconThemeData(color: Colors.white),
       tabBarTheme: TabBarTheme(unselectedLabelColor: Colors.white));
   static final light = ThemeData(
       primarySwatch: Colors.yellow,
@@ -28,23 +28,33 @@ class MyTheme {
       scaffoldBackgroundColor: Colors.grey[100],
       accentColor: Colors.white,
       primaryColor: Colors.white,
-      iconTheme: IconThemeData(color:Colors.black),
+      iconTheme: IconThemeData(color: Colors.black),
       colorScheme: ColorScheme.light(),
       tabBarTheme: TabBarTheme(
         unselectedLabelColor: Colors.black38,
       ));
 }
 
-class ChangeThemeButton extends StatelessWidget {
+class ChangeThemeButton extends StatefulWidget {
+  @override
+  _ChangeThemeButtonState createState() => _ChangeThemeButtonState();
+}
+
+class _ChangeThemeButtonState extends State<ChangeThemeButton> {
   @override
   Widget build(BuildContext context) {
-    final themeprovider = Provider.of<ThemeProvider>(context);
+    final themeprovider = Provider.of<ThemeProvider>(context, listen: true);
     return Switch.adaptive(
         activeColor: Colors.black,
         value: themeprovider.isDarMode,
         onChanged: (value) {
-          final provider = Provider.of<ThemeProvider>(context, listen: false);
-          provider.toggleTheme(value);
+          // final provider = Provider.of<ThemeProvider>(context, listen: false);
+          print(value);
+          setState(() {
+            print('cheking');
+
+            themeprovider.toggleTheme(value);
+          });
         });
   }
 }
