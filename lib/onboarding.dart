@@ -22,7 +22,7 @@ class Onboard extends StatelessWidget {
                SizedBox(height: MediaQuery.of(context).size.height*0.8),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Text("Take litte notes anywhere,anytime.",
+                  child: Text("Take notes anywhere,anytime.",
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontFamily: 'Quicksand',

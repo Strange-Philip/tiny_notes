@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'cards.dart';
 import 'models/noteprovider.dart';
+import 'mythemes.dart';
 import 'noteEdit.dart';
 
 class Home extends StatelessWidget {
@@ -27,7 +28,7 @@ class Home extends StatelessWidget {
                 SizedBox(height: MediaQuery.of(context).size.height * 0.8),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Text("Take litte notes anywhere,anytime.",
+                  child: Text("Take notes anywhere,anytime.",
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontFamily: 'Quicksand',
@@ -47,6 +48,7 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+
 void customLaunch(command) async {
   if (await canLaunch(command)) {
     await launch(command);
@@ -54,6 +56,7 @@ void customLaunch(command) async {
     print('could not launch $command');
   }
 }
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -83,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
-                      color: Colors.black,
+                      // color: Colors.black,
                       fontFamily: 'Quicksand'),
                 ),
                 backgroundColor: Colors.transparent,
@@ -112,35 +115,35 @@ class _HomePageState extends State<HomePage> {
                             itemBuilder: (context, index) {
                               if (index == 0) {
                                 return Container(
-                                  // child: Column(
-                                  //   children: [
-                                  //     Spacer(),
-                                  //     SvgPicture.asset(
-                                  //       'images/Add_files.svg',
-                                  //       width: 200,
-                                  //       height: 150,
-                                  //       fit: BoxFit.cover,
-                                  //     ),
-                                  //     SizedBox(
-                                  //       height: 20,
-                                  //     ),
-                                  //     Padding(
-                                  //       padding: const EdgeInsets.symmetric(
-                                  //           horizontal: 15, vertical: 5),
-                                  //       child: Text(
-                                  //         "No Notes Yet \nTap on the Plus Icon to add notes",
-                                  //         maxLines: 5,
-                                  //         style: TextStyle(
-                                  //             fontSize: 20,
-                                  //             fontWeight: FontWeight.w400,
-                                  //             color: Colors.black,
-                                  //             fontFamily: 'Quicksand'),
-                                  //       ),
-                                  //     ),
-                                  //     Spacer(),
-                                  //   ],
-                                  // ),
-                                );
+                                    // child: Column(
+                                    //   children: [
+                                    //     Spacer(),
+                                    //     SvgPicture.asset(
+                                    //       'images/Add_files.svg',
+                                    //       width: 200,
+                                    //       height: 150,
+                                    //       fit: BoxFit.cover,
+                                    //     ),
+                                    //     SizedBox(
+                                    //       height: 20,
+                                    //     ),
+                                    //     Padding(
+                                    //       padding: const EdgeInsets.symmetric(
+                                    //           horizontal: 15, vertical: 5),
+                                    //       child: Text(
+                                    //         "No Notes Yet \nTap on the Plus Icon to add notes",
+                                    //         maxLines: 5,
+                                    //         style: TextStyle(
+                                    //             fontSize: 20,
+                                    //             fontWeight: FontWeight.w400,
+                                    //             color: Colors.black,
+                                    //             fontFamily: 'Quicksand'),
+                                    //       ),
+                                    //     ),
+                                    //     Spacer(),
+                                    //   ],
+                                    // ),
+                                    );
                               } else {
                                 final i = index - 1;
                                 final item = noteprovider.items[i];
@@ -177,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w400,
-                              color: Colors.black,
+                              // color: Colors.black,
                               fontFamily: 'Quicksand'),
                         ),
                       ),
@@ -196,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                 child: Icon(
                   LineIcons.plus,
                   size: 25,
-                  color: Colors.white,
+                  // color: Colors.white,
                 ),
               ),
             ));
@@ -225,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   height: 450,
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
@@ -254,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black,
+                                // color: Colors.black,
                                 fontFamily: 'Quicksand'),
                           ),
                         ),
@@ -273,13 +276,13 @@ class _HomePageState extends State<HomePage> {
                             title: Text(
                               'Add Note',
                               style: TextStyle(
-                                  color: Colors.black,
+                                  // color: Colors.black,
                                   fontSize: 18,
                                   fontFamily: 'Quicksand'),
                             ),
                             leading: Icon(
                               LineIcons.stickyNote,
-                              color: Colors.black,
+                              // color: Colors.black,
                             ),
                             onTap: () {
                               Navigator.pop(context);
@@ -296,16 +299,17 @@ class _HomePageState extends State<HomePage> {
                             title: Text(
                               'Theme',
                               style: TextStyle(
-                                  color: Colors.black,
+                                  // color: Colors.black,
                                   fontSize: 18,
                                   fontFamily: 'Quicksand'),
                             ),
                             leading: Icon(
                               LineIcons.moon,
-                              color: Colors.black,
+                              // color: Colors.black,
                             ),
+                            trailing: ChangeThemeButton(),
                             onTap: () {
-                              Navigator.pop(context);
+                              // Navigator.pop(context);
                             },
                           ),
                         ),
@@ -315,17 +319,17 @@ class _HomePageState extends State<HomePage> {
                             title: Text(
                               'Contact Developer',
                               style: TextStyle(
-                                  color: Colors.black,
+                                  // color: Colors.black,
                                   fontSize: 18,
                                   fontFamily: 'Quicksand'),
                             ),
                             leading: Icon(
                               LineIcons.envelope,
-                              color: Colors.black,
+                              // color: Colors.black,
                             ),
                             onTap: () {
                               customLaunch(
-                            'mailto:philipabakahmensah@gmail.com?subject=News&body=New%20plugin');
+                                  'mailto:philipabakahmensah@gmail.com?subject=News&body=New%20plugin');
                               Navigator.pop(context);
                             },
                           ),
@@ -336,17 +340,17 @@ class _HomePageState extends State<HomePage> {
                             title: Text(
                               'Help & feedback',
                               style: TextStyle(
-                                  color: Colors.black,
+                                  // color: Colors.black,
                                   fontSize: 18,
                                   fontFamily: 'Quicksand'),
                             ),
                             leading: Icon(
                               LineIcons.questionCircle,
-                              color: Colors.black,
+                              // color: Colors.black,
                             ),
                             onTap: () {
                               customLaunch(
-                            'mailto:philipabakahmensah@gmail.com?subject=News&body=New%20plugin');
+                                  'mailto:philipabakahmensah@gmail.com?subject=News&body=New%20plugin');
                               Navigator.pop(context);
                             },
                           ),

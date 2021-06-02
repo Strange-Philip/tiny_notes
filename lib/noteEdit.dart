@@ -50,6 +50,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
         child: Scaffold(
       appBar: AppBar(
         elevation: 0,
+        iconTheme: Theme.of(context).iconTheme,
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         leading: IconButton(
@@ -80,7 +81,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                           content: Text(
                             "Sure you want to delet note?",
                             style: TextStyle(
-                                color: Colors.black,
+                                // color: Colors.black,
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w400,
                                 fontFamily: 'Quicksand'),
@@ -92,12 +93,12 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Colors.white),
+                                          Theme.of(context).primaryColor),
                                 ),
                                 child: Text(
                                   'No',
                                   style: TextStyle(
-                                      color: Colors.black,
+                                      // color: Colors.black,
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.w500,
                                       fontFamily: 'Quicksand'),
@@ -120,7 +121,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                                   child: Text(
                                     'Yes',
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        // color: Colors.white,
                                         fontSize: 14.0,
                                         fontFamily: 'Quicksand'),
                                   ),
@@ -162,7 +163,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
         child: Icon(
           LineIcons.save,
           size: 25,
-          color: Colors.white,
+          // color: Colors.white,
         ),
       ),
       body: SingleChildScrollView(
@@ -178,7 +179,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
               style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black45,
+                  // color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
                   hintText: "Enter Note Title", border: InputBorder.none),
@@ -216,7 +217,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                           },
                           child: Icon(
                             LineIcons.trash,
-                            color: Colors.white,
+                            // color: Colors.white,
                           ),
                         ),
                       ),
@@ -234,15 +235,15 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
-                  color: Colors.black45,
+                  // color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
                   hintText: "Enter Something...", border: InputBorder.none),
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.7,
-          ),
+          if (_image == null)SizedBox(
+            height: MediaQuery.of(context).size.height * 0.4,
+          )else SizedBox(height: 100,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: Center(
