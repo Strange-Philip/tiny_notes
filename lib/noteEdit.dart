@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:fast_color_picker/fast_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
@@ -22,6 +23,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   bool firstTime = true;
   Note selectedNote;
   int id;
+  Color _color = Colors.white;
 
   @override
   void didChangeDependencies() {
@@ -42,7 +44,6 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     firstTime = false;
   }
 
- 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -239,17 +240,33 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                   hintText: "Enter Something...", border: InputBorder.none),
             ),
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.7,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            child: Center(
+              child: FastColorPicker(
+                selectedColor: _color,
+                onColorSelected: (color) {
+                  setState(() {
+                    _color = color;
+                  });
+                },
+              ),
+            ),
+          )
         ],
       )),
     ));
   }
-   @override
+
+  @override
   void dispose() {
     titleController.dispose();
     contentController.dispose();
     super.dispose();
   }
-
 
   getImage(ImageSource imageSource) async {
     PickedFile imageFile = await picker.getImage(source: imageSource);
@@ -270,7 +287,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     String content = contentController.text.trim();
     String imagePath = _image != null ? _image.path : null;
     bool isAchived = false;
-    Color color = Colors.white;
+    Color color = _color;
 
     print('done');
     print(title);
@@ -285,10 +302,10 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
       print('done');
       Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
           id, title, content, imagePath, color, isAchived, EditMode.ADD);
-          print('doneNow');
+      print('doneNow');
       Navigator.of(this.context)
           .pushReplacementNamed('homepage', arguments: id);
-          print("Complete");
+      print("Complete");
     }
   }
 }

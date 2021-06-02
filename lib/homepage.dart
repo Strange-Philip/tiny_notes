@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'cards.dart';
 import 'models/noteprovider.dart';
 import 'noteEdit.dart';
@@ -46,7 +47,13 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
-
+void customLaunch(command) async {
+  if (await canLaunch(command)) {
+    await launch(command);
+  } else {
+    print('could not launch $command');
+  }
+}
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
@@ -213,8 +220,8 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height - 450,
-                    left: 20,
-                    right: 20),
+                    left: 15,
+                    right: 15),
                 child: Container(
                   height: 450,
                   decoration: BoxDecoration(
@@ -313,10 +320,12 @@ class _HomePageState extends State<HomePage> {
                                   fontFamily: 'Quicksand'),
                             ),
                             leading: Icon(
-                              LineIcons.phone,
+                              LineIcons.envelope,
                               color: Colors.black,
                             ),
                             onTap: () {
+                              customLaunch(
+                            'mailto:philipabakahmensah@gmail.com?subject=News&body=New%20plugin');
                               Navigator.pop(context);
                             },
                           ),
@@ -336,6 +345,8 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.black,
                             ),
                             onTap: () {
+                              customLaunch(
+                            'mailto:philipabakahmensah@gmail.com?subject=News&body=New%20plugin');
                               Navigator.pop(context);
                             },
                           ),

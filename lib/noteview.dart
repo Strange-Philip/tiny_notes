@@ -31,6 +31,7 @@ class _NoteViewState extends State<NoteView> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          backgroundColor: selectedNote.color,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
