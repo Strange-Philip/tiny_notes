@@ -22,4 +22,9 @@ class DatabaseHelper {
     final database = await DatabaseHelper.database();
     return database.query("notes", orderBy: "id DESC");
   }
+
+  static Future delete(int id) async {
+    final database = await DatabaseHelper.database();
+    return database.delete('notes', where: 'id = ?', whereArgs: [id]);
+  }
 }

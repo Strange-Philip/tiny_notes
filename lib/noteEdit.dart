@@ -8,7 +8,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'constants.dart';
-import 'homepage.dart';
 import 'models/noteprovider.dart';
 
 class NoteEditScreen extends StatefulWidget {
@@ -183,6 +182,6 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
         id, title, content, imagePath, color, isAchived, EditMode.ADD);
     Navigator.of(this.context).pushReplacementNamed(
-             ('homepage'),arguments:id);
+             ('/homepage'),arguments:id);
   }
 }

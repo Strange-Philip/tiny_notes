@@ -11,6 +11,16 @@ class NoteProvider with ChangeNotifier {
     return [..._items];
   }
 
+  Note getNote(int id) {
+    return _items.firstWhere((note) => note.id == id, orElse: () => null);
+  }
+
+  Future deleteNote(int id) async {
+    _items.removeWhere((element) => element.id == id);
+    notifyListeners();
+    return DatabaseHelper.delete(id);
+  }
+
   Future getNotes() async {
     final noteList = await DatabaseHelper.getNotedFromDb();
 
@@ -24,22 +34,22 @@ class NoteProvider with ChangeNotifier {
 
   Future addOrUpdateNote(int id, String title, String content, String imagePath,
       Color color, bool isAchived, EditMode editMode) async {
-       final note = Note(id,title,content,imagePath,color,isAchived);
+    final note = Note(id, title, content, imagePath, color, isAchived);
 
-       if(EditMode.ADD== editMode){
-         _items.insert(0,note);
-       }else{
-         _items[_items.indexWhere((note)=> note.id == id)] = note;
-       }
-       notifyListeners();
+    if (EditMode.ADD == editMode) {
+      _items.insert(0, note);
+    } else {
+      _items[_items.indexWhere((note) => note.id == id)] = note;
+    }
+    notifyListeners();
 
-       DatabaseHelper.insert({
-         'id':note.id,
-         'title': note.title,
-         'content': note.content,
-         'imagePath': note.imagePath,
-         'color': note.color,
-         'isAchived':note.isAchived
-       });
-      }
+    DatabaseHelper.insert({
+      'id': note.id,
+      'title': note.title,
+      'content': note.content,
+      'imagePath': note.imagePath,
+      'color': note.color,
+      'isAchived': note.isAchived
+    });
+  }
 }

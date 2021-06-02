@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiny_notes/models/noteprovider.dart';
+import 'package:tiny_notes/noteedit.dart';
 import 'homepage.dart';
 import 'noteview.dart';
 import 'onboarding.dart';
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
           'onBoard': (context) => Onboard(),
           'homepage': (context) => HomePage(),
           'noteView': (context) => NoteView(),
+          'noteEdit': (context) => NoteEditScreen(),
+
+
         },
       ),
     );
