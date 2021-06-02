@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tiny_notes">
    <application
+        android:requestLegacyExternalStorage="true"
         android:label="tiny_notes"
         android:icon="@mipmap/launcher_icon">
         <activity

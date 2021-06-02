@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tiny_notes/models/noteprovider.dart';
 import 'homepage.dart';
 import 'onboarding.dart';
 
@@ -21,18 +23,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.yellow,
-        buttonColor: Color(0xffFBDB6C),
-        scaffoldBackgroundColor: Colors.grey[100],
+    return ChangeNotifierProvider.value(
+      value: NoteProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.yellow,
+          buttonColor: Color(0xffFBDB6C),
+          scaffoldBackgroundColor: Colors.grey[100],
+        ),
+        initialRoute: intScreen == 0 || intScreen == null ? 'onBoard' : 'home',
+        routes: {
+          'home': (context) => Home(),
+          'onBoard': (context) => Onboard(),
+        },
       ),
-      initialRoute: intScreen == 0 || intScreen == null ? 'onBoard' : 'home',
-      routes: {
-        'home': (context) => Home(),
-        'onBoard': (context) => Onboard(),
-      },
     );
   }
 }

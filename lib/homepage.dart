@@ -1,7 +1,12 @@
 import 'package:animated_splash/animated_splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
+
+import 'models/noteprovider.dart';
+import 'noteEdit.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -9,27 +14,28 @@ class Home extends StatelessWidget {
     return SafeArea(
       child: Stack(
         children: [
-          SizedBox(height:40),
           AnimatedSplash(
             imagePath: 'images/icon.jpg',
             home: HomePage(),
             duration: 2500,
             type: AnimatedSplashType.StaticDuration,
           ),
-          SizedBox(height:20),
-          Align(
-            alignment: Alignment.bottomCenter,
-                      child: Center(
-              child: Text("Take litte notes anywhere,anytime.",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Quicksand',
-                    color: Colors.black,
-                    fontSize: 16
-                  )),
+          Center(
+            child: Column(
+              children: [
+                SizedBox(height: 50),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text("Take litte notes anywhere,anytime.",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Quicksand',
+                          color: Colors.black,
+                          fontSize: 16)),
+                ),
+              ],
             ),
           ),
-          SizedBox(height:30)
         ],
       ),
     );
@@ -44,62 +50,88 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal:15),
-            child: GestureDetector(
-              onTap: () {
-                showBtnsheet(context);
-              },
-              child: CircleAvatar(
-                  radius: 20,
-                  backgroundImage: AssetImage("images/male_avatar_.png")),
-            ),
-          )
-        ],
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Spacer(),
-            SvgPicture.asset(
-              'images/Add_files.svg',
-              width: 200,
-              height: 150,
-              fit: BoxFit.cover,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              "No Notes Yet ",
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                  fontFamily: 'Quicksand'),
-            ),
-            Spacer(),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        elevation: 0,
-        onPressed: () {},
-        backgroundColor: Color(0xffFBDB6C),
-        child: Icon(
-          LineIcons.plus,
-          size: 25,
-          color: Colors.white,
-        ),
-      ),
-    ));
+    return FutureBuilder<Object>(
+        future: Provider.of<NoteProvider>(context, listen: false).getNotes(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return SafeArea(
+              child: Scaffold(
+                body: Center(
+                  child: SpinKitFoldingCube(
+                    size: 30,
+                    color: Color(0xffFBDB6C),
+                  ),
+                ),
+              ),
+            );
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            return SafeArea(
+                child: Scaffold(
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: GestureDetector(
+                      onTap: () {
+                        showBtnsheet(context);
+                      },
+                      child: CircleAvatar(
+                          radius: 20,
+                          backgroundImage:
+                              AssetImage("images/male_avatar_.png")),
+                    ),
+                  )
+                ],
+              ),
+              body: Consumer<NoteProvider>(
+                builder: (context, noteprovider, child) =>
+                    noteprovider.items.length <= 0 ? child : Container(),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Spacer(),
+                      SvgPicture.asset(
+                        'images/Add_files.svg',
+                        width: 200,
+                        height: 150,
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "No Notes Yet \nTap on the Plus Icon to add notes",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontFamily: 'Quicksand'),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
+                ),
+              ),
+              floatingActionButton: FloatingActionButton(
+                elevation: 0,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => NoteEditScreen()));
+                },
+                backgroundColor: Color(0xffFBDB6C),
+                child: Icon(
+                  LineIcons.plus,
+                  size: 25,
+                  color: Colors.white,
+                ),
+              ),
+            ));
+          }
+          return Container();
+        });
   }
 
   void showBtnsheet(
@@ -161,7 +193,9 @@ class _HomePageState extends State<HomePage> {
                               backgroundImage:
                                   AssetImage("images/male_avatar_.png")),
                         ),
-                        Divider(thickness: 2,),
+                        Divider(
+                          thickness: 2,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ListTile(
