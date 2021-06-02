@@ -5,6 +5,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
+
+import 'constants.dart';
+import 'homepage.dart';
+import 'models/noteprovider.dart';
 
 class NoteEditScreen extends StatefulWidget {
   @override
@@ -60,6 +65,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
         onPressed: () {
           if (titleController.text.isEmpty) {
             titleController.text = "Untitled Note";
+            saveNote();
           }
         },
         backgroundColor: Color(0xffFBDB6C),
@@ -74,14 +80,14 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: TextField(
               controller: titleController,
               maxLines: null,
               textCapitalization: TextCapitalization.sentences,
               style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
                   color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
@@ -130,14 +136,14 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
               ),
             ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: TextField(
               controller: contentController,
               maxLines: null,
               textCapitalization: TextCapitalization.sentences,
               style: TextStyle(
                   fontSize: 20,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w400,
                   color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
@@ -156,9 +162,27 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     final appDir = await getApplicationDocumentsDirectory();
     final fileName = basename(imageFile.path);
 
-    tempFile = await tempFile.copy('$appDir/$fileName');
+    tempFile = await tempFile.copy('${appDir.path}/$fileName');
     setState(() {
       _image = tempFile;
     });
+  }
+
+  void saveNote() {
+    String title = titleController.text.trim();
+    String content = contentController.text.trim();
+
+    String imagePath = _image != null ? _image.path : null;
+
+    int id = DateTime.now().microsecondsSinceEpoch;
+
+    bool isAchived = false;
+
+    Color color = Colors.white;
+
+    Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
+        id, title, content, imagePath, color, isAchived, EditMode.ADD);
+    Navigator.of(this.context).pushReplacementNamed(
+             ('homepage'),arguments:id);
   }
 }

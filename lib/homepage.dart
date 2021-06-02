@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
+import 'cards.dart';
 import 'models/noteprovider.dart';
 import 'noteEdit.dart';
 
@@ -17,13 +18,13 @@ class Home extends StatelessWidget {
           AnimatedSplash(
             imagePath: 'images/icon.jpg',
             home: HomePage(),
-            duration: 2500,
+            duration: 3000,
             type: AnimatedSplashType.StaticDuration,
           ),
           Center(
             child: Column(
               children: [
-                SizedBox(height: 50),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.8),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Text("Take litte notes anywhere,anytime.",
@@ -88,7 +89,58 @@ class _HomePageState extends State<HomePage> {
               ),
               body: Consumer<NoteProvider>(
                 builder: (context, noteprovider, child) =>
-                    noteprovider.items.length <= 0 ? child : Container(),
+                    noteprovider.items.length <= 0
+                        ? child
+                        : ListView.builder(
+                          itemCount: noteprovider.items.length +1,
+                          itemBuilder: (context,index){
+                          if(index==0){
+                            return  Center(
+                  child: Column(
+                    children: [
+                      Spacer(),
+                      SvgPicture.asset(
+                        'images/Add_files.svg',
+                        width: 200,
+                        height: 150,
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 5),
+                        child: Text(
+                          "No Notes Yet \nTap on the Plus Icon to add notes",
+                          maxLines: 5,
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                              fontFamily: 'Quicksand'),
+                        ),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
+                );
+                          }else {
+                            final i = index -1;
+                            final item = noteprovider.items[i];
+                            return NoteCard(
+                             id: item.id,
+                             title: item.title,
+                             content: item.content,
+                             imagePath: item.imagePath,
+                             color: item.color,
+                             isAchived: item.isAchived,
+                             date: item.date,
+                            );
+                          }
+                            
+                          
+                        }),
                 child: Center(
                   child: Column(
                     children: [
@@ -102,13 +154,18 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text(
-                        "No Notes Yet \nTap on the Plus Icon to add notes",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                            fontFamily: 'Quicksand'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 5),
+                        child: Text(
+                          "No Notes Yet \nTap on the Plus Icon to add notes",
+                          maxLines: 5,
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black,
+                              fontFamily: 'Quicksand'),
+                        ),
                       ),
                       Spacer(),
                     ],
@@ -212,6 +269,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                             onTap: () {
                               Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => NoteEditScreen()));
                             },
                           ),
                         ),

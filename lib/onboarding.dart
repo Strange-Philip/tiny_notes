@@ -19,7 +19,7 @@ class Onboard extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                SizedBox(height: 50),
+               SizedBox(height: MediaQuery.of(context).size.height*0.8),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Text("Take litte notes anywhere,anytime.",
@@ -49,7 +49,6 @@ class _OnboardingHomeState extends State<OnboardingHome> {
     return SafeArea(
         child: IntroductionScreen(
       showNextButton: true,
-      showDoneButton: true,
       pages: [
         PageViewModel(
             title: "Add Notes",

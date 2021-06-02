@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiny_notes/models/noteprovider.dart';
 import 'homepage.dart';
+import 'noteview.dart';
 import 'onboarding.dart';
 
 int intScreen;
@@ -36,6 +37,8 @@ class MyApp extends StatelessWidget {
         routes: {
           'home': (context) => Home(),
           'onBoard': (context) => Onboard(),
+          'homepage': (context) => HomePage(),
+          'noteView': (context) => NoteView(),
         },
       ),
     );
