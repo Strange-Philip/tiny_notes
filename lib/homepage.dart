@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                     noteprovider.items.length <= 0
                         ? child
                         : ListView.builder(
+                          physics: BouncingScrollPhysics(),
                           itemCount: noteprovider.items.length +1,
                           itemBuilder: (context,index){
                           if(index==0){

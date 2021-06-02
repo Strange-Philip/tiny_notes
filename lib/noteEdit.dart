@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import 'constants.dart';
 import 'models/noteprovider.dart';
+import 'models/notes.dart';
 
 class NoteEditScreen extends StatefulWidget {
   @override
@@ -20,6 +21,28 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   final picker = ImagePicker();
   final titleController = TextEditingController();
   final contentController = TextEditingController();
+  bool firstTime = true;
+  Note selectedNote;
+  int id;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (firstTime) {
+      final id = ModalRoute.of(this.context).settings.arguments;
+      if (id != null) {
+        selectedNote =
+            Provider.of<NoteProvider>(this.context, listen: false).getNote(id);
+
+        titleController.text = selectedNote?.title;
+        contentController.text = selectedNote?.content;
+        if (selectedNote?.imagePath != null) {
+          _image = File(selectedNote?.imagePath);
+        }
+      }
+    }
+    firstTime = false;
+  }
 
   @override
   void dispose() {
@@ -55,7 +78,82 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
           IconButton(
               icon: Icon(LineIcons.trash),
               onPressed: () {
-                Navigator.pop(context);
+                if (id != null) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          // title: Text('Error'),
+                          content: Text(
+                            "Sure you want to delet note?",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Quicksand'),
+                          ),
+                          actions: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: TextButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                ),
+                                child: Text(
+                                  'No',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: 'Quicksand'),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop(true);
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: SizedBox(
+                                width: 100.0,
+                                child: TextButton(
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Color(0xffFBDB6C)),
+                                  ),
+                                  child: Text(
+                                    'Yes',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14.0,
+                                        fontFamily: 'Quicksand'),
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                    await Provider.of<NoteProvider>(context,
+                                            listen: false)
+                                        .deleteNote(selectedNote.id);
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: const Text('Note Deleted'),
+                                      duration: const Duration(seconds: 2),
+                                      backgroundColor: Colors.green,
+                                      behavior: SnackBarBehavior.floating,
+                                    ));
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      });
+                } else {
+                  Navigator.pop(context);
+                }
               }),
         ],
       ),
@@ -173,15 +271,19 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
 
     String imagePath = _image != null ? _image.path : null;
 
-    int id = DateTime.now().microsecondsSinceEpoch;
-
     bool isAchived = false;
 
     Color color = Colors.white;
-
-    Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
-        id, title, content, imagePath, color, isAchived, EditMode.ADD);
-    Navigator.of(this.context).pushReplacementNamed(
-             ('/homepage'),arguments:id);
+    if (id != null) {
+      Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
+          id, title, content, imagePath, color, isAchived, EditMode.UPDATE);
+      Navigator.pop(this.context);
+    } else {
+      int id = DateTime.now().microsecondsSinceEpoch;
+      Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
+          id, title, content, imagePath, color, isAchived, EditMode.ADD);
+      Navigator.of(this.context)
+          .pushReplacementNamed(('/homepage'), arguments: id);
+    }
   }
 }
