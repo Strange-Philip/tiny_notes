@@ -104,35 +104,35 @@ class _HomePageState extends State<HomePage> {
                             itemCount: noteprovider.items.length + 1,
                             itemBuilder: (context, index) {
                               if (index == 0) {
-                                return Center(
-                                  child: Column(
-                                    children: [
-                                      Spacer(),
-                                      SvgPicture.asset(
-                                        'images/Add_files.svg',
-                                        width: 200,
-                                        height: 150,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 5),
-                                        child: Text(
-                                          "No Notes Yet \nTap on the Plus Icon to add notes",
-                                          maxLines: 5,
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.black,
-                                              fontFamily: 'Quicksand'),
-                                        ),
-                                      ),
-                                      Spacer(),
-                                    ],
-                                  ),
+                                return Container(
+                                  // child: Column(
+                                  //   children: [
+                                  //     Spacer(),
+                                  //     SvgPicture.asset(
+                                  //       'images/Add_files.svg',
+                                  //       width: 200,
+                                  //       height: 150,
+                                  //       fit: BoxFit.cover,
+                                  //     ),
+                                  //     SizedBox(
+                                  //       height: 20,
+                                  //     ),
+                                  //     Padding(
+                                  //       padding: const EdgeInsets.symmetric(
+                                  //           horizontal: 15, vertical: 5),
+                                  //       child: Text(
+                                  //         "No Notes Yet \nTap on the Plus Icon to add notes",
+                                  //         maxLines: 5,
+                                  //         style: TextStyle(
+                                  //             fontSize: 20,
+                                  //             fontWeight: FontWeight.w400,
+                                  //             color: Colors.black,
+                                  //             fontFamily: 'Quicksand'),
+                                  //       ),
+                                  //     ),
+                                  //     Spacer(),
+                                  //   ],
+                                  // ),
                                 );
                               } else {
                                 final i = index - 1;

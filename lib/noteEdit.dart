@@ -42,13 +42,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     firstTime = false;
   }
 
-  @override
-  void dispose() {
-    titleController.dispose();
-    contentController.dispose();
-    super.dispose();
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -249,10 +243,17 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
       )),
     ));
   }
+   @override
+  void dispose() {
+    titleController.dispose();
+    contentController.dispose();
+    super.dispose();
+  }
+
 
   getImage(ImageSource imageSource) async {
     PickedFile imageFile = await picker.getImage(source: imageSource);
-    if (imageFile = null) return;
+    if (imageFile == null) return;
     File tempFile = File(imageFile.path);
     final appDir = await getApplicationDocumentsDirectory();
     final fileName = basename(imageFile.path);
@@ -264,24 +265,30 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   }
 
   void saveNote() {
+    print('done');
     String title = titleController.text.trim();
     String content = contentController.text.trim();
-
     String imagePath = _image != null ? _image.path : null;
-
     bool isAchived = false;
-
     Color color = Colors.white;
+
+    print('done');
+    print(title);
+    print(content);
+
     if (id != null) {
       Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
           id, title, content, imagePath, color, isAchived, EditMode.UPDATE);
       Navigator.pop(this.context);
     } else {
       int id = DateTime.now().microsecondsSinceEpoch;
+      print('done');
       Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
           id, title, content, imagePath, color, isAchived, EditMode.ADD);
+          print('doneNow');
       Navigator.of(this.context)
-          .pushReplacementNamed(('homepage'), arguments: id);
+          .pushReplacementNamed('homepage', arguments: id);
+          print("Complete");
     }
   }
 }

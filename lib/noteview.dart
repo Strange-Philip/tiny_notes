@@ -121,7 +121,7 @@ class _NoteViewState extends State<NoteView> {
         elevation: 0,
         onPressed: () {
           Navigator.of(this.context)
-              .pushNamed(('noteEdit'), arguments: selectedNote.id);
+              .pushNamed('noteEdit', arguments: selectedNote.id);
         },
         backgroundColor: Color(0xffFBDB6C),
         child: Icon(
