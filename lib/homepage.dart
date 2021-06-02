@@ -4,7 +4,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
-
 import 'cards.dart';
 import 'models/noteprovider.dart';
 import 'noteEdit.dart';
@@ -16,7 +15,7 @@ class Home extends StatelessWidget {
       child: Stack(
         children: [
           AnimatedSplash(
-            imagePath: 'images/icon.jpg',
+            imagePath: 'images/iconbg.png',
             home: HomePage(),
             duration: 3000,
             type: AnimatedSplashType.StaticDuration,
@@ -71,6 +70,15 @@ class _HomePageState extends State<HomePage> {
               appBar: AppBar(
                 automaticallyImplyLeading: false,
                 elevation: 0,
+                title: Text(
+                  "TinyNotes",
+                  maxLines: 5,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      fontFamily: 'Quicksand'),
+                ),
                 backgroundColor: Colors.transparent,
                 actions: [
                   Padding(
@@ -92,56 +100,54 @@ class _HomePageState extends State<HomePage> {
                     noteprovider.items.length <= 0
                         ? child
                         : ListView.builder(
-                          physics: BouncingScrollPhysics(),
-                          itemCount: noteprovider.items.length +1,
-                          itemBuilder: (context,index){
-                          if(index==0){
-                            return  Center(
-                  child: Column(
-                    children: [
-                      Spacer(),
-                      SvgPicture.asset(
-                        'images/Add_files.svg',
-                        width: 200,
-                        height: 150,
-                        fit: BoxFit.cover,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 5),
-                        child: Text(
-                          "No Notes Yet \nTap on the Plus Icon to add notes",
-                          maxLines: 5,
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black,
-                              fontFamily: 'Quicksand'),
-                        ),
-                      ),
-                      Spacer(),
-                    ],
-                  ),
-                );
-                          }else {
-                            final i = index -1;
-                            final item = noteprovider.items[i];
-                            return NoteCard(
-                             id: item.id,
-                             title: item.title,
-                             content: item.content,
-                             imagePath: item.imagePath,
-                             color: item.color,
-                             isAchived: item.isAchived,
-                             date: item.date,
-                            );
-                          }
-                            
-                          
-                        }),
+                            physics: BouncingScrollPhysics(),
+                            itemCount: noteprovider.items.length + 1,
+                            itemBuilder: (context, index) {
+                              if (index == 0) {
+                                return Center(
+                                  child: Column(
+                                    children: [
+                                      Spacer(),
+                                      SvgPicture.asset(
+                                        'images/Add_files.svg',
+                                        width: 200,
+                                        height: 150,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 15, vertical: 5),
+                                        child: Text(
+                                          "No Notes Yet \nTap on the Plus Icon to add notes",
+                                          maxLines: 5,
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.black,
+                                              fontFamily: 'Quicksand'),
+                                        ),
+                                      ),
+                                      Spacer(),
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                final i = index - 1;
+                                final item = noteprovider.items[i];
+                                return NoteCard(
+                                  id: item.id,
+                                  title: item.title,
+                                  content: item.content,
+                                  imagePath: item.imagePath,
+                                  color: item.color,
+                                  isAchived: item.isAchived,
+                                  date: item.date,
+                                );
+                              }
+                            }),
                 child: Center(
                   child: Column(
                     children: [

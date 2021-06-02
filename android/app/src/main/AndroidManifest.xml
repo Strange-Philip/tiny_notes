@@ -2,7 +2,7 @@
     package="com.example.tiny_notes">
    <application
         android:requestLegacyExternalStorage="true"
-        android:label="tiny_notes"
+        android:label="TinyNotes"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

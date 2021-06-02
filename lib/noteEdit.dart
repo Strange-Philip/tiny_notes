@@ -1,12 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-
 import 'constants.dart';
 import 'models/noteprovider.dart';
 import 'models/notes.dart';
@@ -283,7 +281,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
       Provider.of<NoteProvider>(this.context, listen: false).addOrUpdateNote(
           id, title, content, imagePath, color, isAchived, EditMode.ADD);
       Navigator.of(this.context)
-          .pushReplacementNamed(('/homepage'), arguments: id);
+          .pushReplacementNamed(('homepage'), arguments: id);
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -35,7 +34,7 @@ class _NoteCardState extends State<NoteCard> {
       child: GestureDetector(
         onTap: () {
           Navigator.of(context)
-              .pushReplacementNamed(('/noteView'), arguments: widget.id);
+              .pushReplacementNamed(('noteView'), arguments: widget.id);
         },
         child: Container(
           height: widget.imagePath == null ? 200 : 300,

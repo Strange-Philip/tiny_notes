@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +7,7 @@ import 'package:tiny_notes/models/noteprovider.dart';
 import 'models/notes.dart';
 
 class NoteView extends StatefulWidget {
-  static const route = '/noteView';
+  static const route = 'noteView';
   @override
   _NoteViewState createState() => _NoteViewState();
 }
@@ -122,7 +121,7 @@ class _NoteViewState extends State<NoteView> {
         elevation: 0,
         onPressed: () {
           Navigator.of(this.context)
-              .pushNamed(('/noteEdit'), arguments: selectedNote.id);
+              .pushNamed(('noteEdit'), arguments: selectedNote.id);
         },
         backgroundColor: Color(0xffFBDB6C),
         child: Icon(

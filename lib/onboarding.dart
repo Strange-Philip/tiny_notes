@@ -11,7 +11,7 @@ class Onboard extends StatelessWidget {
       child: Stack(
         children: [
           AnimatedSplash(
-            imagePath: 'images/icon.jpg',
+            imagePath: 'images/iconbg.png',
             home: OnboardingHome(),
             duration: 2500,
             type: AnimatedSplashType.StaticDuration,
@@ -60,11 +60,11 @@ class _OnboardingHomeState extends State<OnboardingHome> {
             decoration: PageDecoration(
                 pageColor: Colors.white,
                 imagePadding: EdgeInsets.all(50),
-                titleTextStyle: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black54,
+                  titleTextStyle: TextStyle(
+                    fontSize: 24,
+                    color: Colors.black,
                     fontFamily: 'Quicksand',
-                    fontWeight: FontWeight.w500),
+                    fontWeight: FontWeight.w600),
                 bodyTextStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
@@ -81,10 +81,10 @@ class _OnboardingHomeState extends State<OnboardingHome> {
                 pageColor: Colors.white,
                 imagePadding: EdgeInsets.all(50),
                 titleTextStyle: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black54,
+                    fontSize: 24,
+                    color: Colors.black,
                     fontFamily: 'Quicksand',
-                    fontWeight: FontWeight.w500),
+                    fontWeight: FontWeight.w600),
                 bodyTextStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
@@ -100,11 +100,11 @@ class _OnboardingHomeState extends State<OnboardingHome> {
             decoration: PageDecoration(
                 pageColor: Colors.white,
                 imagePadding: EdgeInsets.all(50),
-                titleTextStyle: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black54,
+                  titleTextStyle: TextStyle(
+                    fontSize: 24,
+                    color: Colors.black,
                     fontFamily: 'Quicksand',
-                    fontWeight: FontWeight.w500),
+                    fontWeight: FontWeight.w600),
                 bodyTextStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
@@ -121,10 +121,10 @@ class _OnboardingHomeState extends State<OnboardingHome> {
                 pageColor: Colors.white,
                 imagePadding: EdgeInsets.all(50),
                 titleTextStyle: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black54,
+                    fontSize: 24,
+                    color: Colors.black,
                     fontFamily: 'Quicksand',
-                    fontWeight: FontWeight.w500),
+                    fontWeight: FontWeight.w600),
                 bodyTextStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
