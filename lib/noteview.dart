@@ -33,7 +33,7 @@ class _NoteViewState extends State<NoteView> {
     final color =hexToColor(selectedNote.color);
     return SafeArea(
         child: Scaffold(
-      backgroundColor: color.withOpacity(0.7),
+      backgroundColor: color,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,

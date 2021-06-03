@@ -19,9 +19,8 @@ class Onboard extends StatelessWidget {
           Center(
             child: Column(
               children: [
-               SizedBox(height: MediaQuery.of(context).size.height*0.8),
-                Align(
-                  alignment: Alignment.bottomCenter,
+                SizedBox(height: MediaQuery.of(context).size.height * 0.8),
+                Center(
                   child: Text("Take notes anywhere,anytime.",
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -55,12 +54,11 @@ class _OnboardingHomeState extends State<OnboardingHome> {
             image: SvgPicture.asset(
               "images/add_notes.svg",
             ),
-            body:
-                "Consectetur voluptate id exercitation qui cillum commodo veniam nisi enim ad dolore veniam dolor aliqua.",
+            body: "Tiny Notes allow users to easily add notes no matter how small they are. Best part is you dont need internet connection for this.",
             decoration: PageDecoration(
                 pageColor: Colors.white,
                 imagePadding: EdgeInsets.all(50),
-                  titleTextStyle: TextStyle(
+                titleTextStyle: TextStyle(
                     fontSize: 24,
                     color: Colors.black,
                     fontFamily: 'Quicksand',
@@ -76,7 +74,7 @@ class _OnboardingHomeState extends State<OnboardingHome> {
               "images/add_photo.svg",
             ),
             body:
-                "Consectetur voluptate id exercitation qui cillum commodo veniam nisi enim ad dolore veniam dolor aliqua.",
+                "We at Tiny Notes believe that some notes are better if you add your cool and exciting photos. Feel free to snap photos or just fetch from your gallery.",
             decoration: PageDecoration(
                 pageColor: Colors.white,
                 imagePadding: EdgeInsets.all(50),
@@ -96,11 +94,11 @@ class _OnboardingHomeState extends State<OnboardingHome> {
               "images/work_from_anywhere.svg",
             ),
             body:
-                "Consectetur voluptate id exercitation qui cillum commodo veniam nisi enim ad dolore veniam dolor aliqua.",
+                "Our simple but cool interface makes it easy to view and add notes. Enjoy.",
             decoration: PageDecoration(
                 pageColor: Colors.white,
                 imagePadding: EdgeInsets.all(50),
-                  titleTextStyle: TextStyle(
+                titleTextStyle: TextStyle(
                     fontSize: 24,
                     color: Colors.black,
                     fontFamily: 'Quicksand',
@@ -116,7 +114,7 @@ class _OnboardingHomeState extends State<OnboardingHome> {
               "images/dark_mode.svg",
             ),
             body:
-                "Consectetur voluptate id exercitation qui cillum commodo veniam nisi enim ad dolore veniam dolor aliqua.",
+                "Try our exciting dark mode theme. Remember to share with your friends too.",
             decoration: PageDecoration(
                 pageColor: Colors.white,
                 imagePadding: EdgeInsets.all(50),
@@ -139,7 +137,8 @@ class _OnboardingHomeState extends State<OnboardingHome> {
         "Done",
         style: TextStyle(
           color: Colors.yellow,
-          fontWeight: FontWeight.w400,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
           fontFamily: 'Quicksand',
         ),
       ),
@@ -147,7 +146,8 @@ class _OnboardingHomeState extends State<OnboardingHome> {
       skip: Text(
         "Skip",
         style: TextStyle(
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
           fontFamily: 'Quicksand',
         ),
       ),

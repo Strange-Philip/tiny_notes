@@ -27,8 +27,7 @@ class Home extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 0.8),
-                Align(
-                  alignment: Alignment.bottomCenter,
+                Center(
                   child: Text("Take notes anywhere,anytime.",
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
@@ -60,6 +59,12 @@ void customLaunch(command) async {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    Provider.of<NoteProvider>(context, listen: false).getNotes();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder<Object>(
         future: Provider.of<NoteProvider>(context, listen: false).getNotes(),
@@ -86,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                   maxLines: 5,
                   style: TextStyle(
                       fontSize: 20,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                       // color: Colors.black,
                       fontFamily: 'Quicksand'),
                 ),

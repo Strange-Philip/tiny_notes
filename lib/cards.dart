@@ -30,7 +30,7 @@ class _NoteCardState extends State<NoteCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:12,vertical:8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context)
@@ -41,15 +41,14 @@ class _NoteCardState extends State<NoteCard> {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: widget.color.withOpacity(0.5),
+            color: widget.color,
           ),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             if (widget.imagePath != null)
               Container(
-                // padding: EdgeInsets.all(10),
                 width: MediaQuery.of(context).size.width,
-                height: 100,
+                height: 120,
                 child: Stack(
                   children: [
                     Container(
@@ -79,13 +78,13 @@ class _NoteCardState extends State<NoteCard> {
                   Spacer(),
                   IconButton(
                       icon: Icon(LineIcons.bookmark,
-                      size: 30,
+                          size: 30,
                           color: widget.isAchived == false
                               ? Colors.black54
                               : Colors.black),
                       onPressed: () {
                         setState(() {
-                          widget.isAchived == true;
+                          // widget.isAchived == true;
                         });
                       })
                 ],
@@ -100,20 +99,20 @@ class _NoteCardState extends State<NoteCard> {
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontFamily: 'Quicksand',
-                      color: Colors.black26,
-                      fontSize: 16)),
+                      color: Colors.black54,
+                      fontSize: 14)),
             ),
-            SizedBox(height: 4),
+            SizedBox(height: 2),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Expanded(
                 child: Text(widget.content,
-                    maxLines: 5,
+                    maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontFamily: 'Quicksand',
-                        color: Colors.black38,
+                        color: Colors.black54,
                         fontSize: 16)),
               ),
             ),
