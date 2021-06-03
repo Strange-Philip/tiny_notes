@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 backgroundColor: Colors.transparent,
                 actions: [
-                  ChangeThemeButton(),
+                  // ChangeThemeButton(),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: GestureDetector(
@@ -147,6 +147,7 @@ class _HomePageState extends State<HomePage> {
                                     // ),
                                     );
                               } else {
+                                // SizedBox(height: 30,);
                                 final i = index - 1;
                                 final item = noteprovider.items[i];
                                 return NoteCard(

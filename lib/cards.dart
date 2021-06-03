@@ -30,24 +30,24 @@ class _NoteCardState extends State<NoteCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal:12,vertical:8),
       child: GestureDetector(
         onTap: () {
           Navigator.of(context)
               .pushReplacementNamed('noteView', arguments: widget.id);
         },
         child: Container(
-          height: widget.imagePath == null ? 200 : 300,
+          height: widget.imagePath == null ? 150 : 230,
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: widget.color.withOpacity(0.7),
+            color: widget.color.withOpacity(0.5),
           ),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             if (widget.imagePath != null)
               Container(
-                padding: EdgeInsets.all(10),
+                // padding: EdgeInsets.all(10),
                 width: MediaQuery.of(context).size.width,
                 height: 100,
                 child: Stack(
@@ -65,26 +65,27 @@ class _NoteCardState extends State<NoteCard> {
                 ),
               ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 children: [
                   Text(widget.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           fontFamily: 'Quicksand',
                           color: Colors.black,
-                          fontSize: 16)),
+                          fontSize: 20)),
                   Spacer(),
                   IconButton(
                       icon: Icon(LineIcons.bookmark,
+                      size: 30,
                           color: widget.isAchived == false
-                              ? Colors.black38
-                              : Colors.black54),
+                              ? Colors.black54
+                              : Colors.black),
                       onPressed: () {
                         setState(() {
-                          // widget.isAchived == true;
+                          widget.isAchived == true;
                         });
                       })
                 ],
@@ -92,28 +93,28 @@ class _NoteCardState extends State<NoteCard> {
             ),
             SizedBox(height: 4),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: EdgeInsets.symmetric(horizontal: 10),
               child: Text(widget.date,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w500,
                       fontFamily: 'Quicksand',
                       color: Colors.black26,
-                      fontSize: 12)),
+                      fontSize: 16)),
             ),
             SizedBox(height: 4),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: EdgeInsets.symmetric(horizontal: 10),
               child: Expanded(
                 child: Text(widget.content,
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        fontWeight: FontWeight.w300,
+                        fontWeight: FontWeight.w500,
                         fontFamily: 'Quicksand',
                         color: Colors.black38,
-                        fontSize: 12)),
+                        fontSize: 16)),
               ),
             ),
           ]),

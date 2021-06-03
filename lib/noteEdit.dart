@@ -79,7 +79,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                         return AlertDialog(
                           // title: Text('Error'),
                           content: Text(
-                            "Sure you want to delet note?",
+                            "Sure you want to delete note?",
                             style: TextStyle(
                                 // color: Colors.black,
                                 fontSize: 16.0,
@@ -252,7 +252,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
               height: 100,
             ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
             child: Center(
               child: FastColorPicker(
                 selectedColor: _color,

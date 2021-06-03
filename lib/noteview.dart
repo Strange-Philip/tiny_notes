@@ -30,9 +30,10 @@ class _NoteViewState extends State<NoteView> {
 
   @override
   Widget build(BuildContext context) {
+    final color =hexToColor(selectedNote.color);
     return SafeArea(
         child: Scaffold(
-      backgroundColor: hexToColor(selectedNote.color),
+      backgroundColor: color.withOpacity(0.7),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -52,7 +53,7 @@ class _NoteViewState extends State<NoteView> {
                       return AlertDialog(
                         // title: Text('Error'),
                         content: Text(
-                          "Sure you want to delet note?",
+                          "Sure you want to delete note?",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 16.0,
@@ -163,7 +164,7 @@ class _NoteViewState extends State<NoteView> {
                 Text(
                   selectedNote.date,
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.black45,
                       fontFamily: 'Quicksand'),
