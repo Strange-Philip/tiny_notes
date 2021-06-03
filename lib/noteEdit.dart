@@ -249,7 +249,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
             )
           else
             SizedBox(
-              height: 100,
+              height: 60,
             ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
@@ -263,7 +263,8 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                 },
               ),
             ),
-          )
+          ),
+          
         ],
       )),
     ));
