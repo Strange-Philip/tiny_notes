@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:provider/provider.dart';
+
+import 'models/noteprovider.dart';
 
 class NoteCard extends StatefulWidget {
   final int id;
@@ -33,8 +36,7 @@ class _NoteCardState extends State<NoteCard> {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context)
-              .pushReplacementNamed('noteView', arguments: widget.id);
+          Navigator.of(context).pushNamed('noteView', arguments: widget.id);
         },
         child: Container(
           height: widget.imagePath == null ? 150 : 230,
@@ -67,52 +69,74 @@ class _NoteCardState extends State<NoteCard> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Row(
                 children: [
-                  Text(widget.title,
+                  Container(
+                    width: 220,
+                    child: Text(widget.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Quicksand',
+                            // color: Colors.black,
+                            fontSize: 20)),
+                  ),
+                  Spacer(),
+                  IconButton(
+                      icon: Icon(
+                        LineIcons.trash,
+                        size: 27,
+                      ),
+                      onPressed: () async {
+                        await Provider.of<NoteProvider>(context, listen: false)
+                            .deleteNote(widget.id);
+
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          elevation: 0,
+                          content: const Text('Note Deleted'),
+                          duration: const Duration(seconds: 2),
+                          backgroundColor: Colors.green,
+                          behavior: SnackBarBehavior.floating,
+                        ));
+                      })
+                ],
+              ),
+            ),
+            // SizedBox(height: 2),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                children: [
+                  Icon(
+                  LineIcons.clock,
+                  size: 20,
+                  
+                ),
+                SizedBox(
+                  width: 4,
+                ),
+                  Text(widget.date,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontFamily: 'Quicksand',
-                          color: Colors.black,
-                          fontSize: 20)),
-                  Spacer(),
-                  IconButton(
-                      icon: Icon(LineIcons.bookmark,
-                          size: 30,
-                          color: widget.isAchived == 0
-                              ? Colors.black54
-                              : Colors.black),
-                      onPressed: () {
-                        setState(() {
-                          // widget.isAchived == true;
-                        });
-                      })
+                          // color: Colors.black54,
+                          fontSize: 14)),
                 ],
               ),
             ),
             SizedBox(height: 4),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Text(widget.date,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Quicksand',
-                      color: Colors.black54,
-                      fontSize: 14)),
-            ),
-            SizedBox(height: 2),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Expanded(
+              child: Container(
+                height: 70,
                 child: Text(widget.content,
-                    maxLines: 4,
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontFamily: 'Quicksand',
-                        color: Colors.black54,
+                        // color: Colors.black54,
                         fontSize: 16)),
               ),
             ),

@@ -23,10 +23,11 @@ class Onboard extends StatelessWidget {
                 Center(
                   child: Text("Take notes anywhere,anytime.",
                       style: TextStyle(
-                          fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.none,
+                          fontWeight: FontWeight.w500,
                           fontFamily: 'Quicksand',
                           color: Colors.black,
-                          fontSize: 16)),
+                          fontSize: 20)),
                 ),
               ],
             ),

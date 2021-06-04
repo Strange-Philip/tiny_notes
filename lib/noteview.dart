@@ -30,7 +30,7 @@ class _NoteViewState extends State<NoteView> {
 
   @override
   Widget build(BuildContext context) {
-    final color =hexToColor(selectedNote.color);
+    final color = hexToColor(selectedNote.color);
     return SafeArea(
         child: Scaffold(
       backgroundColor: color,
@@ -39,13 +39,13 @@ class _NoteViewState extends State<NoteView> {
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         leading: IconButton(
-            icon: Icon(LineIcons.times),
+            icon: Icon(LineIcons.times,color: Colors.black,),
             onPressed: () {
               Navigator.pop(context);
             }),
         actions: [
           IconButton(
-              icon: Icon(LineIcons.trash),
+              icon: Icon(LineIcons.trash,color: Colors.black),
               onPressed: () {
                 showDialog(
                     context: context,
@@ -107,6 +107,7 @@ class _NoteViewState extends State<NoteView> {
                                   Navigator.pop(context);
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
+                                    elevation: 0,
                                     content: const Text('Note Deleted'),
                                     duration: const Duration(seconds: 2),
                                     backgroundColor: Colors.green,
@@ -132,7 +133,6 @@ class _NoteViewState extends State<NoteView> {
         child: Icon(
           LineIcons.edit,
           size: 25,
-          color: Colors.white,
         ),
       ),
       body: SingleChildScrollView(
@@ -146,7 +146,7 @@ class _NoteViewState extends State<NoteView> {
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black45,
+                    color: Colors.black,
                     fontFamily: 'Quicksand'),
               )),
           Padding(
@@ -156,7 +156,7 @@ class _NoteViewState extends State<NoteView> {
               children: [
                 Icon(
                   LineIcons.clock,
-                  color: Colors.black45,
+                  color: Colors.black54,
                 ),
                 SizedBox(
                   width: 4,
@@ -166,7 +166,7 @@ class _NoteViewState extends State<NoteView> {
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black45,
+                      color: Colors.black54,
                       fontFamily: 'Quicksand'),
                 ),
               ],
@@ -196,7 +196,7 @@ class _NoteViewState extends State<NoteView> {
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black45,
+                    color: Colors.black54,
                     fontFamily: 'Quicksand'),
               )),
         ],

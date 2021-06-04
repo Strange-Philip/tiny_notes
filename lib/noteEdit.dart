@@ -37,6 +37,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
 
         titleController.text = selectedNote?.title;
         contentController.text = selectedNote?.content;
+        _color = hexToColor(selectedNote.color);
         if (selectedNote?.imagePath != null) {
           _image = File(selectedNote?.imagePath);
         }
@@ -49,29 +50,30 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: _color,
       appBar: AppBar(
         elevation: 0,
         iconTheme: Theme.of(context).iconTheme,
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         leading: IconButton(
-            icon: Icon(LineIcons.times),
+            icon: Icon(LineIcons.times,color: Colors.black),
             onPressed: () {
               Navigator.pop(context);
             }),
         actions: [
           IconButton(
-              icon: Icon(LineIcons.image),
+              icon: Icon(LineIcons.image,color: Colors.black),
               onPressed: () {
                 getImage(ImageSource.gallery);
               }),
           IconButton(
-              icon: Icon(LineIcons.camera),
+              icon: Icon(LineIcons.camera,color: Colors.black),
               onPressed: () {
                 getImage(ImageSource.camera);
               }),
           IconButton(
-              icon: Icon(LineIcons.trash),
+              icon: Icon(LineIcons.trash,color: Colors.black),
               onPressed: () {
                 if (id != null) {
                   showDialog(
@@ -134,6 +136,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                                     Navigator.pop(context);
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
+                                      elevation: 0,
                                       content: const Text('Note Deleted'),
                                       duration: const Duration(seconds: 2),
                                       backgroundColor: Colors.green,
@@ -312,6 +315,13 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
           isAchived,
           EditMode.UPDATE);
       Navigator.pop(this.context);
+      ScaffoldMessenger.of(this.context).showSnackBar(SnackBar(
+        elevation: 0,
+        content: const Text('Note Edited'),
+        duration: const Duration(seconds: 2),
+        backgroundColor: Colors.green,
+        behavior: SnackBarBehavior.floating,
+      ));
     } else {
       int id = DateTime.now().microsecondsSinceEpoch;
       print('done');
@@ -326,6 +336,13 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
       print('doneNow');
       Navigator.of(this.context)
           .pushReplacementNamed('homepage', arguments: id);
+      ScaffoldMessenger.of(this.context).showSnackBar(SnackBar(
+        elevation: 0,
+        content: const Text('Note Added'),
+        duration: const Duration(seconds: 2),
+        backgroundColor: Colors.green,
+        behavior: SnackBarBehavior.floating,
+      ));
       print("Complete");
     }
   }

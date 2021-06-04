@@ -30,10 +30,11 @@ class Home extends StatelessWidget {
                 Center(
                   child: Text("Take notes anywhere,anytime.",
                       style: TextStyle(
-                          fontWeight: FontWeight.w400,
+                          decoration: TextDecoration.none,
+                          fontWeight: FontWeight.w500,
                           fontFamily: 'Quicksand',
                           color: Colors.black,
-                          fontSize: 16)),
+                          fontSize: 20)),
                 ),
               ],
             ),
@@ -91,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                   maxLines: 5,
                   style: TextStyle(
                       fontSize: 20,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                       // color: Colors.black,
                       fontFamily: 'Quicksand'),
                 ),
@@ -200,8 +201,7 @@ class _HomePageState extends State<HomePage> {
               floatingActionButton: FloatingActionButton(
                 elevation: 0,
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => NoteEditScreen()));
+                  Navigator.of(context).pushNamed('noteEdit');
                 },
                 backgroundColor: Color(0xffFBDB6C),
                 child: Icon(
@@ -294,10 +294,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             onTap: () {
                               Navigator.pop(context);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => NoteEditScreen()));
+                              Navigator.of(context).pushNamed('noteEdit');
                             },
                           ),
                         ),
