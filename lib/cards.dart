@@ -8,7 +8,7 @@ class NoteCard extends StatefulWidget {
   final String content;
   final String imagePath;
   final Color color;
-  final bool isAchived;
+  final int isAchived;
   final String date;
 
   const NoteCard(
@@ -79,7 +79,7 @@ class _NoteCardState extends State<NoteCard> {
                   IconButton(
                       icon: Icon(LineIcons.bookmark,
                           size: 30,
-                          color: widget.isAchived == false
+                          color: widget.isAchived == 0
                               ? Colors.black54
                               : Colors.black),
                       onPressed: () {

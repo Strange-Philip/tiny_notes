@@ -33,7 +33,7 @@ class NoteProvider with ChangeNotifier {
   }
 
   Future addOrUpdateNote(int id, String title, String content, String imagePath,
-      String color, bool isAchived, EditMode editMode) async {
+      String color, int isAchived, EditMode editMode) async {
     final note = Note(id, title, content, imagePath, color, isAchived);
 
     if (EditMode.ADD == editMode) {

@@ -4,11 +4,10 @@ import 'package:provider/provider.dart';
 class ThemeProvider extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.light;
 
-  bool get isDarMode => themeMode == ThemeMode.dark;
+  bool isDarker = false;
 
-  toggleTheme(bool isOn) {
-    isOn == true ? themeMode = ThemeMode.dark : themeMode = ThemeMode.light;
-    notifyListeners();
+  toggleTheme() {
+    return isDarker ? ThemeMode.dark : ThemeMode.light;
   }
 }
 
@@ -46,14 +45,14 @@ class _ChangeThemeButtonState extends State<ChangeThemeButton> {
     final themeprovider = Provider.of<ThemeProvider>(context, listen: true);
     return Switch.adaptive(
         activeColor: Colors.black,
-        value: themeprovider.isDarMode,
+        value: themeprovider.isDarker,
         onChanged: (value) {
           // final provider = Provider.of<ThemeProvider>(context, listen: false);
           print(value);
           setState(() {
             print('cheking');
 
-            themeprovider.toggleTheme(value);
+            themeprovider.toggleTheme();
           });
         });
   }

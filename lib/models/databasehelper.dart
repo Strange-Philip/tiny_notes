@@ -8,7 +8,7 @@ class DatabaseHelper {
     return openDatabase(join(databasePath, 'notes_database.db'),
         onCreate: (database, version) {
       return database.execute(
-          'CREATE TABLE notes(id INTEGER PRIMARY KEY, title TEXT, content TEXT, imagePath TEXT, color TEXT, isAchived TEXT)');
+          'CREATE TABLE notes(id INTEGER PRIMARY KEY, title TEXT, content TEXT, imagePath TEXT, color TEXT, isAchived BIT)');
     }, version: 1);
   }
 

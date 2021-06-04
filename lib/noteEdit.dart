@@ -22,14 +22,15 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   final contentController = TextEditingController();
   bool firstTime = true;
   Note selectedNote;
-  int id;
-  Color _color = Colors.white;
 
+  ///int id;
+  Color _color = Colors.white;
+  var id;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (firstTime) {
-      final id = ModalRoute.of(this.context).settings.arguments;
+      id = ModalRoute.of(this.context).settings.arguments;
       if (id != null) {
         selectedNote =
             Provider.of<NoteProvider>(this.context, listen: false).getNote(id);
@@ -156,9 +157,9 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
         onPressed: () {
           if (titleController.text.isEmpty) {
             titleController.text = "Untitled Note";
-            saveNote();
+            saveNote(id);
           } else {
-            saveNote();
+            saveNote(id);
           }
         },
         backgroundColor: Color(0xffFBDB6C),
@@ -264,7 +265,6 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
               ),
             ),
           ),
-          
         ],
       )),
     ));
@@ -290,12 +290,12 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     });
   }
 
-  void saveNote() {
+  void saveNote(id) {
     print('done');
     String title = titleController.text.trim();
     String content = contentController.text.trim();
     String imagePath = _image != null ? _image.path : null;
-    bool isAchived = false;
+    int isAchived = 0;
     Color color = _color;
 
     print('done');

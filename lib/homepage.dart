@@ -372,4 +372,8 @@ class _HomePageState extends State<HomePage> {
           });
         });
   }
+
+  check(val) {
+    print(val);
+  }
 }
