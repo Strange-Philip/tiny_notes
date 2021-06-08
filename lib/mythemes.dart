@@ -6,9 +6,21 @@ class ThemeProvider extends ChangeNotifier {
 
   bool isDarker = false;
 
-  toggleTheme() {
-    return isDarker ? ThemeMode.dark : ThemeMode.light;
+  toggleTheme(bool value) {
+    isDarker = value;
+
+    return {isDarker == true
+        ? themeMode = ThemeMode.dark
+        : themeMode = ThemeMode.light,
+        notifyListeners(),
+        print(themeMode),
+        notifyListeners()
+        };
+   
+        
   }
+
+  notifyListeners();
 }
 
 class MyTheme {
@@ -52,7 +64,9 @@ class _ChangeThemeButtonState extends State<ChangeThemeButton> {
           setState(() {
             print('cheking');
 
-            themeprovider.toggleTheme();
+            themeprovider.toggleTheme( value);
+
+            
           });
         });
   }

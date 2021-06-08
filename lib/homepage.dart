@@ -9,7 +9,6 @@ import 'cards.dart';
 import 'constants.dart';
 import 'models/noteprovider.dart';
 import 'mythemes.dart';
-import 'noteEdit.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -230,11 +229,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.transparent,
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height - 450,
-                    left: 15,
-                    right: 15),
+                    top: MediaQuery.of(context).size.height - 455,
+                    left: 13,
+                    right: 13),
                 child: Container(
-                  height: 450,
+                  height: 455,
                   decoration: BoxDecoration(
                       color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.only(
@@ -309,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                                   fontFamily: 'Quicksand'),
                             ),
                             leading: Icon(
-                              LineIcons.moon,
+                             ThemeProvider().themeMode == ThemeMode.light? LineIcons.moon :LineIcons.sun,
                               // color: Colors.black,
                             ),
                             trailing: ChangeThemeButton(),
@@ -334,7 +333,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             onTap: () {
                               customLaunch(
-                                  'mailto:philipabakahmensah@gmail.com?subject=News&body=New%20plugin');
+                                  'mailto:philipabakahmensah@gmail.com?subject=TinyNotes&body=');
                               Navigator.pop(context);
                             },
                           ),
@@ -355,12 +354,20 @@ class _HomePageState extends State<HomePage> {
                             ),
                             onTap: () {
                               customLaunch(
-                                  'mailto:philipabakahmensah@gmail.com?subject=News&body=New%20plugin');
+                                  'mailto:philipabakahmensah@gmail.com?subject=TinyNotes&body=');
                               Navigator.pop(context);
                             },
                           ),
                         ),
-                      ],
+                        Center(
+                          child: Text(
+                                'Developed by • Philip',
+                                style: TextStyle(
+                                   fontFamily: 'Quicksand',
+                                    fontSize: 14,))
+                                  
+                      
+                        ),],
                     ),
                   ),
                 ),

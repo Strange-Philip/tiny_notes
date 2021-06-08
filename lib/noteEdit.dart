@@ -6,6 +6,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:tiny_notes/mythemes.dart';
 import 'constants.dart';
 import 'models/noteprovider.dart';
 import 'models/notes.dart';
@@ -22,9 +23,8 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   final contentController = TextEditingController();
   bool firstTime = true;
   Note selectedNote;
-
-  ///int id;
-  Color _color = Colors.white;
+  
+  Color _color = ThemeProvider().themeMode == ThemeMode.light ? Colors.white : Color(0xFFc1c1c1);
   var id;
   @override
   void didChangeDependencies() {
@@ -179,13 +179,14 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: TextField(
+              cursorColor: Color(0xffFBDB6C),
               controller: titleController,
               maxLines: null,
               textCapitalization: TextCapitalization.sentences,
               style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w600,
-                  // color: Colors.black45,
+                  color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
                   hintText: "Enter Note Title", border: InputBorder.none),
@@ -235,13 +236,14 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
             child: TextField(
+              cursorColor: Color(0xffFBDB6C),
               controller: contentController,
               maxLines: null,
               textCapitalization: TextCapitalization.sentences,
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
-                  // color: Colors.black45,
+                  color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
                   hintText: "Enter Something...", border: InputBorder.none),

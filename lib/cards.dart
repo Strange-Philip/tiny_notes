@@ -77,7 +77,7 @@ class _NoteCardState extends State<NoteCard> {
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: 'Quicksand',
-                            // color: Colors.black,
+                            color: Colors.black,
                             fontSize: 20)),
                   ),
                   Spacer(),
@@ -85,6 +85,7 @@ class _NoteCardState extends State<NoteCard> {
                       icon: Icon(
                         LineIcons.trash,
                         size: 27,
+                        color: Colors.black
                       ),
                       onPressed: () async {
                         await Provider.of<NoteProvider>(context, listen: false)
@@ -109,6 +110,7 @@ class _NoteCardState extends State<NoteCard> {
                   Icon(
                   LineIcons.clock,
                   size: 20,
+                  color: Colors.black54
                   
                 ),
                 SizedBox(
@@ -120,23 +122,23 @@ class _NoteCardState extends State<NoteCard> {
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontFamily: 'Quicksand',
-                          // color: Colors.black54,
+                          color: Colors.black54,
                           fontSize: 14)),
                 ],
               ),
             ),
-            SizedBox(height: 4),
+            SizedBox(height:widget.imagePath == null ? 4:2),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Container(
-                height: 70,
+                height:widget.imagePath == null ?  70 :40,
                 child: Text(widget.content,
-                    maxLines: 3,
+                    maxLines: widget.imagePath == null ?  3 :1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontFamily: 'Quicksand',
-                        // color: Colors.black54,
+                        color: Colors.black54,
                         fontSize: 16)),
               ),
             ),
