@@ -92,6 +92,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  easy_dynamic_theme:
+    dependency: "direct main"
+    description:
+      name: easy_dynamic_theme
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   fake_async:
     dependency: transitive
     description:
@@ -233,13 +240,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  liquid_pull_to_refresh:
-    dependency: "direct main"
-    description:
-      name: liquid_pull_to_refresh
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   matcher:
     dependency: transitive
     description:

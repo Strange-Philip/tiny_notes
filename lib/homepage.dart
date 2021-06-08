@@ -1,4 +1,5 @@
 import 'package:animated_splash/animated_splash.dart';
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
@@ -198,11 +199,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               floatingActionButton: FloatingActionButton(
+                
                 elevation: 0,
                 onPressed: () {
                   Navigator.of(context).pushNamed('noteEdit');
                 },
-                backgroundColor: Color(0xffFBDB6C),
+                // backgroundColor: Color(0xffFBDB6C),
                 child: Icon(
                   LineIcons.plus,
                   size: 25,
@@ -308,10 +310,12 @@ class _HomePageState extends State<HomePage> {
                                   fontFamily: 'Quicksand'),
                             ),
                             leading: Icon(
-                             ThemeProvider().themeMode == ThemeMode.light? LineIcons.moon :LineIcons.sun,
+                             EasyDynamicTheme.of(context).themeMode == ThemeMode.light? LineIcons.moon :LineIcons.sun,
                               // color: Colors.black,
+                              
                             ),
-                            trailing: ChangeThemeButton(),
+                            // trailing: ChangeThemeButton(),
+                            trailing:EasyDynamicThemeSwitch(),
                             onTap: () {
                               // Navigator.pop(context);
                             },

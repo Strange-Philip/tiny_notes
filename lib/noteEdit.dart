@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:fast_color_picker/fast_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,6 +11,7 @@ import 'package:tiny_notes/mythemes.dart';
 import 'constants.dart';
 import 'models/noteprovider.dart';
 import 'models/notes.dart';
+
 
 class NoteEditScreen extends StatefulWidget {
   @override
@@ -189,7 +191,12 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                   color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
-                  hintText: "Enter Note Title", border: InputBorder.none),
+                  hintText: "Enter Note Title", border: InputBorder.none,hintStyle:TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black45,
+                  fontFamily: 'Quicksand'), ),
+                  
             ),
           ),
           if (_image != null)
@@ -246,7 +253,11 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                   color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
-                  hintText: "Enter Something...", border: InputBorder.none),
+                  hintText: "Enter Something...", border: InputBorder.none ,hintStyle:TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black45,
+                  fontFamily: 'Quicksand'),),
             ),
           ),
           if (_image == null)

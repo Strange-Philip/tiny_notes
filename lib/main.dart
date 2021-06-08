@@ -1,3 +1,4 @@
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ Future<void> main() async {
   await prefences.setInt('intScreen', 1);
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  runApp(MyApp());
+  runApp(EasyDynamicThemeWidget(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        themeMode: ThemeProvider().themeMode  ,
+        themeMode: EasyDynamicTheme.of(context).themeMode,
         theme: MyTheme.light,
         darkTheme: MyTheme.dark,
         // theme: ThemeData(

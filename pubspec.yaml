@@ -36,7 +36,7 @@ dependencies:
   path_provider: ^2.0.2
   provider: ^5.0.0
   sqflite: ^2.0.0+3
-  liquid_pull_to_refresh: ^3.0.0
+  easy_dynamic_theme: ^2.2.0
   animated_splash: ^1.0.0
   introduction_screen: ^1.0.9
   shared_preferences: ^2.0.6
