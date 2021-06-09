@@ -55,9 +55,9 @@ class _NoteViewState extends State<NoteView> {
                         content: Text(
                           "Sure you want to delete note?",
                           style: TextStyle(
-                              color: Colors.black,
+                              // color: Colors.black,
                               fontSize: 16.0,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w600,
                               fontFamily: 'Quicksand'),
                         ),
                         actions: <Widget>[
@@ -74,7 +74,7 @@ class _NoteViewState extends State<NoteView> {
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 14.0,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w600,
                                     fontFamily: 'Quicksand'),
                               ),
                               onPressed: () {
@@ -96,6 +96,7 @@ class _NoteViewState extends State<NoteView> {
                                   'Yes',
                                   style: TextStyle(
                                       color: Colors.white,
+                                       fontWeight: FontWeight.w600,
                                       fontSize: 14.0,
                                       fontFamily: 'Quicksand'),
                                 ),

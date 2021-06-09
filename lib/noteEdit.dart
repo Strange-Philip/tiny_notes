@@ -12,7 +12,6 @@ import 'constants.dart';
 import 'models/noteprovider.dart';
 import 'models/notes.dart';
 
-
 class NoteEditScreen extends StatefulWidget {
   @override
   _NoteEditScreenState createState() => _NoteEditScreenState();
@@ -25,8 +24,10 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   final contentController = TextEditingController();
   bool firstTime = true;
   Note selectedNote;
-  
-  Color _color = ThemeProvider().themeMode == ThemeMode.light ? Colors.white : Color(0xFFc1c1c1);
+
+  Color _color = ThemeProvider().themeMode == ThemeMode.light
+      ? Colors.white
+      : Color(0xFFc1c1c1);
   var id;
   @override
   void didChangeDependencies() {
@@ -59,23 +60,23 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         leading: IconButton(
-            icon: Icon(LineIcons.times,color: Colors.black),
+            icon: Icon(LineIcons.times, color: Colors.black),
             onPressed: () {
               Navigator.pop(context);
             }),
         actions: [
           IconButton(
-              icon: Icon(LineIcons.image,color: Colors.black),
+              icon: Icon(LineIcons.image, color: Colors.black),
               onPressed: () {
                 getImage(ImageSource.gallery);
               }),
           IconButton(
-              icon: Icon(LineIcons.camera,color: Colors.black),
+              icon: Icon(LineIcons.camera, color: Colors.black),
               onPressed: () {
                 getImage(ImageSource.camera);
               }),
           IconButton(
-              icon: Icon(LineIcons.trash,color: Colors.black),
+              icon: Icon(LineIcons.trash, color: Colors.black),
               onPressed: () {
                 if (id != null) {
                   showDialog(
@@ -98,7 +99,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Theme.of(context).primaryColor),
+                                          Colors.white),
                                 ),
                                 child: Text(
                                   'No',
@@ -126,7 +127,8 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                                   child: Text(
                                     'Yes',
                                     style: TextStyle(
-                                         color: Colors.white,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
                                         fontSize: 14.0,
                                         fontFamily: 'Quicksand'),
                                   ),
@@ -135,7 +137,9 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                                     await Provider.of<NoteProvider>(context,
                                             listen: false)
                                         .deleteNote(selectedNote.id);
-                                    Navigator.pop(context);
+                                    Navigator.of(this.context)
+                                        .pushReplacementNamed('homepage',
+                                            arguments: id);
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
                                       elevation: 0,
@@ -191,12 +195,14 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                   color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
-                  hintText: "Enter Note Title", border: InputBorder.none,hintStyle:TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black45,
-                  fontFamily: 'Quicksand'), ),
-                  
+                hintText: "Enter Note Title",
+                border: InputBorder.none,
+                hintStyle: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black45,
+                    fontFamily: 'Quicksand'),
+              ),
             ),
           ),
           if (_image != null)
@@ -253,11 +259,14 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                   color: Colors.black45,
                   fontFamily: 'Quicksand'),
               decoration: InputDecoration(
-                  hintText: "Enter Something...", border: InputBorder.none ,hintStyle:TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black45,
-                  fontFamily: 'Quicksand'),),
+                hintText: "Enter Something...",
+                border: InputBorder.none,
+                hintStyle: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black45,
+                    fontFamily: 'Quicksand'),
+              ),
             ),
           ),
           if (_image == null)
