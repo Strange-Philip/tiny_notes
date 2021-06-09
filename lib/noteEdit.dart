@@ -88,7 +88,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                             style: TextStyle(
                                 // color: Colors.black,
                                 fontSize: 16.0,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w600,
                                 fontFamily: 'Quicksand'),
                           ),
                           actions: <Widget>[
@@ -103,9 +103,9 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                                 child: Text(
                                   'No',
                                   style: TextStyle(
-                                      // color: Colors.black,
+                                      color: Colors.black,
                                       fontSize: 14.0,
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                       fontFamily: 'Quicksand'),
                                 ),
                                 onPressed: () {
@@ -126,7 +126,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                                   child: Text(
                                     'Yes',
                                     style: TextStyle(
-                                        // color: Colors.white,
+                                         color: Colors.white,
                                         fontSize: 14.0,
                                         fontFamily: 'Quicksand'),
                                   ),

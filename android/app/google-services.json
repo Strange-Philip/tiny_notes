@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "323383825943",
+    "project_id": "tinynotes-8d2ae",
+    "storage_bucket": "tinynotes-8d2ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323383825943:android:a16b3d37cbc489de9f2e52",
+        "android_client_info": {
+          "package_name": "com.example.tiny_notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323383825943-fgaeb6aam79gouov81ghjbkrro2n5v57.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgbZNW-8p64zHXD96AMlsiVqX8IYecshk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323383825943-fgaeb6aam79gouov81ghjbkrro2n5v57.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
