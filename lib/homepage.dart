@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Object>(
-        future: Provider.of<NoteProvider>(context, listen: false).getNotes(),
+        future: Provider.of<NoteProvider>(context, listen: false).getNotes().then((value) => value as Object),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return SafeArea(
@@ -116,44 +116,17 @@ class _HomePageState extends State<HomePage> {
               body: Consumer<NoteProvider>(
                 builder: (context, noteprovider, child) =>
                     noteprovider.items.length <= 0
-                        ? child
+                        ? child!
                         : ListView.builder(
                             physics: BouncingScrollPhysics(),
                             itemCount: noteprovider.items.length + 1,
                             itemBuilder: (context, index) {
                               if (index == 0) {
                                 return Container(
-                                    // child: Column(
-                                    //   children: [
-                                    //     Spacer(),
-                                    //     SvgPicture.asset(
-                                    //       'images/Add_files.svg',
-                                    //       width: 200,
-                                    //       height: 150,
-                                    //       fit: BoxFit.cover,
-                                    //     ),
-                                    //     SizedBox(
-                                    //       height: 20,
-                                    //     ),
-                                    //     Padding(
-                                    //       padding: const EdgeInsets.symmetric(
-                                    //           horizontal: 15, vertical: 5),
-                                    //       child: Text(
-                                    //         "No Notes Yet \nTap on the Plus Icon to add notes",
-                                    //         maxLines: 5,
-                                    //         style: TextStyle(
-                                    //             fontSize: 20,
-                                    //             fontWeight: FontWeight.w400,
-                                    //             color: Colors.black,
-                                    //             fontFamily: 'Quicksand'),
-                                    //       ),
-                                    //     ),
-                                    //     Spacer(),
-                                    //   ],
-                                    // ),
+                                  
                                     );
                               } else {
-                                // SizedBox(height: 30,);
+                                
                                 final i = index - 1;
                                 final item = noteprovider.items[i];
                                 return NoteCard(

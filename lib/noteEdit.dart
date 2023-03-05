@@ -18,12 +18,12 @@ class NoteEditScreen extends StatefulWidget {
 }
 
 class _NoteEditScreenState extends State<NoteEditScreen> {
-  File _image;
+  File? _image;
   final picker = ImagePicker();
   final titleController = TextEditingController();
   final contentController = TextEditingController();
   bool firstTime = true;
-  Note selectedNote;
+  Note? selectedNote;
 
   Color _color = ThemeProvider().themeMode == ThemeMode.light
       ? Colors.white
@@ -33,16 +33,16 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (firstTime) {
-      id = ModalRoute.of(this.context).settings.arguments;
+      id = ModalRoute.of(this.context)!.settings.arguments;
       if (id != null) {
         selectedNote =
             Provider.of<NoteProvider>(this.context, listen: false).getNote(id);
 
-        titleController.text = selectedNote?.title;
-        contentController.text = selectedNote?.content;
-        _color = hexToColor(selectedNote.color);
+        titleController.text = selectedNote!.title!;
+        contentController.text = selectedNote!.content!;
+        _color = hexToColor(selectedNote!.color!);
         if (selectedNote?.imagePath != null) {
-          _image = File(selectedNote?.imagePath);
+          _image = File(selectedNote!.imagePath!);
         }
       }
     }
@@ -136,7 +136,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                                     Navigator.pop(context);
                                     await Provider.of<NoteProvider>(context,
                                             listen: false)
-                                        .deleteNote(selectedNote.id);
+                                        .deleteNote(selectedNote!.id);
                                     Navigator.of(this.context)
                                         .pushReplacementNamed('homepage',
                                             arguments: id);
@@ -216,7 +216,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
-                            image: FileImage(_image), fit: BoxFit.cover)),
+                            image: FileImage(_image!), fit: BoxFit.cover)),
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
@@ -303,7 +303,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   }
 
   getImage(ImageSource imageSource) async {
-    PickedFile imageFile = await picker.getImage(source: imageSource);
+    PickedFile? imageFile = await picker.getImage(source: imageSource);
     if (imageFile == null) return;
     File tempFile = File(imageFile.path);
     final appDir = await getApplicationDocumentsDirectory();
@@ -319,7 +319,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     print('done');
     String title = titleController.text.trim();
     String content = contentController.text.trim();
-    String imagePath = _image != null ? _image.path : null;
+    String? imagePath = _image != null ? _image!.path : null;
     int isAchived = 0;
     Color color = _color;
 

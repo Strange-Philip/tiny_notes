@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:tiny_notes/models/databasehelper.dart';
 import 'package:tiny_notes/models/notes.dart';
@@ -11,18 +13,18 @@ class NoteProvider with ChangeNotifier {
     return [..._items];
   }
 
-  Note getNote(int id) {
+  Note? getNote(int? id) {
     return _items.firstWhere((note) => note.id == id, orElse: () => null);
   }
 
-  Future deleteNote(int id) async {
+  Future deleteNote(int? id) async {
     _items.removeWhere((element) => element.id == id);
     notifyListeners();
     return DatabaseHelper.delete(id);
   }
 
   Future getNotes() async {
-    final noteList = await DatabaseHelper.getNotedFromDb();
+    final noteList = await (DatabaseHelper.getNotedFromDb() as FutureOr<List<Map<String, dynamic>>>);
 
     _items = noteList
         .map((item) => Note(item['id'], item['title'], item['content'],
@@ -32,7 +34,7 @@ class NoteProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future addOrUpdateNote(int id, String title, String content, String imagePath,
+  Future addOrUpdateNote(int id, String title, String content, String? imagePath,
       String color, int isAchived, EditMode editMode) async {
     final note = Note(id, title, content, imagePath, color, isAchived);
 

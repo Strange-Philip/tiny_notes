@@ -6,16 +6,16 @@ import 'package:provider/provider.dart';
 import 'models/noteprovider.dart';
 
 class NoteCard extends StatefulWidget {
-  final int id;
-  final String title;
-  final String content;
-  final String imagePath;
-  final Color color;
-  final int isAchived;
-  final String date;
+  final int? id;
+  final String? title;
+  final String? content;
+  final String? imagePath;
+  final Color? color;
+  final int? isAchived;
+  final String? date;
 
   const NoteCard(
-      {Key key,
+      {Key? key,
       this.id,
       this.title,
       this.content,
@@ -59,7 +59,7 @@ class _NoteCardState extends State<NoteCard> {
                               topRight: Radius.circular(10),
                               topLeft: Radius.circular(10)),
                           image: DecorationImage(
-                              image: FileImage(File(widget.imagePath)),
+                              image: FileImage(File(widget.imagePath!)),
                               fit: BoxFit.cover)),
                     ),
                   ],
@@ -71,7 +71,7 @@ class _NoteCardState extends State<NoteCard> {
                 children: [
                   Container(
                     width: 220,
-                    child: Text(widget.title,
+                    child: Text(widget.title!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -116,7 +116,7 @@ class _NoteCardState extends State<NoteCard> {
                 SizedBox(
                   width: 4,
                 ),
-                  Text(widget.date,
+                  Text(widget.date!,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -132,7 +132,7 @@ class _NoteCardState extends State<NoteCard> {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Container(
                 height:widget.imagePath == null ?  70 :40,
-                child: Text(widget.content,
+                child: Text(widget.content!,
                     maxLines: widget.imagePath == null ?  3 :1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

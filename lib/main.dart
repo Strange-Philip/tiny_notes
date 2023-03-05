@@ -11,7 +11,7 @@ import 'mythemes.dart';
 import 'noteview.dart';
 import 'onboarding.dart';
 
-int intScreen;
+int? intScreen;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

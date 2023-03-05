@@ -14,23 +14,23 @@ class NoteView extends StatefulWidget {
 }
 
 class _NoteViewState extends State<NoteView> {
-  Note selectedNote;
+  Note? selectedNote;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final id = ModalRoute.of(context).settings.arguments;
+    final id = ModalRoute.of(context)!.settings.arguments;
     final provider = Provider.of<NoteProvider>(context);
 
-    if (provider.getNote(id) != null) {
+    if (provider.getNote(id as int?) != null) {
       selectedNote = provider.getNote(id);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final color = hexToColor(selectedNote.color);
+    final color = hexToColor(selectedNote!.color!);
     return SafeArea(
         child: Scaffold(
       backgroundColor: color,
@@ -104,7 +104,7 @@ class _NoteViewState extends State<NoteView> {
                                   Navigator.pop(context);
                                   await Provider.of<NoteProvider>(context,
                                           listen: false)
-                                      .deleteNote(selectedNote.id);
+                                      .deleteNote(selectedNote!.id);
                                   Navigator.pop(context);
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
@@ -128,7 +128,7 @@ class _NoteViewState extends State<NoteView> {
         elevation: 0,
         onPressed: () {
           Navigator.of(this.context)
-              .pushNamed('noteEdit', arguments: selectedNote.id);
+              .pushNamed('noteEdit', arguments: selectedNote!.id);
         },
         backgroundColor: Color(0xffFBDB6C),
         child: Icon(
@@ -143,7 +143,7 @@ class _NoteViewState extends State<NoteView> {
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: Text(
-                selectedNote.title,
+                selectedNote!.title!,
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w600,
@@ -163,7 +163,7 @@ class _NoteViewState extends State<NoteView> {
                   width: 4,
                 ),
                 Text(
-                  selectedNote.date,
+                  selectedNote!.date,
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -173,7 +173,7 @@ class _NoteViewState extends State<NoteView> {
               ],
             ),
           ),
-          if (selectedNote.imagePath != null)
+          if (selectedNote!.imagePath != null)
             Container(
               padding: EdgeInsets.all(10),
               width: MediaQuery.of(context).size.width,
@@ -184,7 +184,7 @@ class _NoteViewState extends State<NoteView> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
-                            image: FileImage(File(selectedNote.imagePath)),
+                            image: FileImage(File(selectedNote!.imagePath!)),
                             fit: BoxFit.cover)),
                   ),
                 ],
@@ -193,7 +193,7 @@ class _NoteViewState extends State<NoteView> {
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: Text(
-                selectedNote.content,
+                selectedNote!.content!,
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
